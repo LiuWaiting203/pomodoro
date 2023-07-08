@@ -1,0 +1,13 @@
+.vHome {
+  height: calc(100vh - 68px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vHomeBG {
+  background-image: url('../assets/bg1.jpg');
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  background-position: center -68px;
+}

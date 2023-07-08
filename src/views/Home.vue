@@ -1,24 +1,40 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <h1>{{ currentText }}</h1>
-        <h1>{{ currentTime }}</h1>
-      </v-col>
-      <v-col cols="12">
-        <v-btn variant="text" icon="mdi-play" v-if="status !== STATUS.COUNTING" @click="startTimer"></v-btn>
-        <v-btn variant="text" icon="mdi-pause" v-if="status === STATUS.COUNTING" @click="pauseTimer"></v-btn>
-        <v-btn variant="text" icon="mdi-skip-next" v-if="currentItem.length > 0" @click="finishTimer"></v-btn>
-      </v-col>
-    </v-row>
-  </v-container>
+  <div :style="{
+    backgroundImage: 'url(' + selectedBG + ')',
+    backgroundSize: '100vw 100vh',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center -68px'
+    }">
+    <v-container class="vHome">
+      <v-img
+      :width="240"
+      :height="220"
+      aspect-ratio="4/3"
+      contain
+      src="../assets/windowbase_active.png"
+      >
+      <v-row class="text-center py-15">
+          <v-col cols="12" class="py-0">
+            <h1>{{ currentText }}</h1>
+            <h1>{{ currentTime }}</h1>
+          </v-col>
+          <v-col cols="12" class="py-0">
+            <v-btn variant="text" icon="mdi-play" v-if="status !== STATUS.COUNTING" @click="startTimer"></v-btn>
+            <v-btn variant="text" icon="mdi-pause" v-if="status === STATUS.COUNTING" @click="pauseTimer"></v-btn>
+            <v-btn variant="text" icon="mdi-skip-next" v-if="currentItem.length > 0" @click="finishTimer"></v-btn>
+          </v-col>
+        </v-row>
+      </v-img>
+      <!-- <v-img :src="currentImg" :key="currentImgKey" :width="240" :height="220"></v-img> -->
+    </v-container>
+  </div>
 </template>
 
 <script setup>
 import { useListStore } from '@/store/list'
 import { storeToRefs } from 'pinia'
 import { useSettingsStore } from '@/store/settings'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useWebNotification } from '@vueuse/core'
 
 const list = useListStore()
@@ -27,6 +43,34 @@ const { countdown, setCurrentItem, setFinishItem } = list
 
 const settings = useSettingsStore()
 const { selectedAlarmFile, notify } = storeToRefs(settings)
+
+const selectedBG = computed(() => settings.selectedBGFile)
+
+
+const images = [
+  '../../public/kangel01.gif',
+  '../../public/kangel02.gif',
+  '../../public/kangel03.gif',
+  '../../public/kangel04.gif',
+  '../../public/ame01.gif',
+  '../../public/ame02.gif',
+  '../../public/ame03.gif',
+  '../../public/ame04.gif',
+]
+
+const currentImgIndex = ref(0)
+const currentImgKey = ref(0)
+
+const changeImage = () => {
+  currentImgIndex.value = (currentImgIndex.value + 1) % images.length
+  currentImgKey.value += 1
+}
+
+onMounted(() => {
+  setInterval(changeImage, 5000)
+})
+
+const currentImg = computed(() => images[currentImgIndex.value])
 
     /* 
       0 = 停止中
@@ -39,6 +83,7 @@ const STATUS = {
   PAUSE: 2
 }
 const status = ref(STATUS.STOP)
+
 
 // 倒數計時器
 let timer = 0

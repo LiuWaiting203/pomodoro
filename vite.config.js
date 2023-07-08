@@ -11,6 +11,9 @@ import { fileURLToPath, URL } from 'node:url'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './', 
+  build: {
+    assetsDir: 'public',
+  },
   plugins: [
     vue({ 
       template: { transformAssetUrls }

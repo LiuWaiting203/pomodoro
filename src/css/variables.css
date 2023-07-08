@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "Unifont";
+  src: url("../assets/unifont_jp.ttf");
+}
+@font-face {
+  font-family: "BoutiqueBitmap";
+  src: url("../assets/BoutiqueBitmap.ttf");
+}
+@font-face {
+  font-family: "Cubic";
+  src: url("../assets/Cubic.ttf");
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Cubic";
+}

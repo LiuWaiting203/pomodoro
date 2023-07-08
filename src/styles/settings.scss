@@ -1,10 +1,7 @@
-/**
- * src/styles/settings.scss
- *
- * Configures SASS variables and Vuetify overwrites
- */
+// 個別設定每個區塊的 CSS;
+@import url('app.scss');
+@import url('home.scss');
+@import url('list.scss');
 
-// https://vuetifyjs.com/features/sass-variables/`
-// @use 'vuetify/settings' with (
-//   $color-pack: false
-// );
+// 全域設定;
+@import url('variables.scss');
