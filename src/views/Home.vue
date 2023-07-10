@@ -25,7 +25,7 @@
           </v-col>
         </v-row>
       </v-img>
-      <!-- <v-img :src="currentImg" :key="currentImgKey" :width="240" :height="220"></v-img> -->
+      <v-img :src="currentImg.file" :key="currentImgKey" :width="240" :height="220"></v-img>
     </v-container>
   </div>
 </template>
@@ -48,14 +48,14 @@ const selectedBG = computed(() => settings.selectedBGFile)
 
 
 const images = [
-  '../../public/kangel01.gif',
-  '../../public/kangel02.gif',
-  '../../public/kangel03.gif',
-  '../../public/kangel04.gif',
-  '../../public/ame01.gif',
-  '../../public/ame02.gif',
-  '../../public/ame03.gif',
-  '../../public/ame04.gif',
+  {file: new URL('@/assets/kangel01.gif', import.meta.url).href},
+  {file: new URL('@/assets/kangel02.gif', import.meta.url).href},
+  {file: new URL('@/assets/kangel03.gif', import.meta.url).href},
+  {file: new URL('@/assets/kangel04.gif', import.meta.url).href},
+  {file: new URL('@/assets/ame01.gif', import.meta.url).href},
+  {file: new URL('@/assets/ame02.gif', import.meta.url).href},
+  {file: new URL('@/assets/ame03.gif', import.meta.url).href},
+  {file: new URL('@/assets/ame04.gif', import.meta.url).href},
 ]
 
 const currentImgIndex = ref(0)
