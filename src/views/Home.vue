@@ -121,7 +121,7 @@ const finishTimer = () => {
     const { show } = useWebNotification({
       title: '事項完成',
       body: currentText.value,
-      icon: 'https://github.com/wdaweb.png'
+      icon: 'https://github.com/LiuWaiting203.png'
     })
     show()
   }
